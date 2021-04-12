@@ -36,38 +36,6 @@ SHOW WARNINGS;
 SHOW WARNINGS;
 USE `wdjk` ;
 
--- -----------------------------------------------------
--- Table `wdjk`.`forum_message`
--- -----------------------------------------------------
-DROP TABLE IF EXISTS `wdjk`.`forum_message` ;
-
-SHOW WARNINGS;
-CREATE TABLE IF NOT EXISTS `wdjk`.`forum_message` (
-  `fm_id` INT NOT NULL AUTO_INCREMENT COMMENT '消息 id',
-  `fm_source` VARCHAR(20) NOT NULL COMMENT '消息来源',
-  `fm_sender_id` INT NOT NULL COMMENT '发送人 id',
-  `fm_send_time` DATETIME NULL DEFAULT CURRENT_TIMESTAMP COMMENT '发送时间（默认为创建时间）',
-  `fm_content` VARCHAR(500) NOT NULL COMMENT '消息内容',
-  `fm_receiver_id` INT NOT NULL COMMENT '接收人 id',
-  `fm_receive_time` DATETIME NULL DEFAULT NULL COMMENT '接收时间（默认空）',
-  PRIMARY KEY (`fm_id`),
-  CONSTRAINT `FM_R_FU_ID`
-    FOREIGN KEY (`fm_receiver_id`)
-    REFERENCES `neubbs`.`forum_user` (`fu_id`),
-  CONSTRAINT `FM_S_FU_ID`
-    FOREIGN KEY (`fm_sender_id`)
-    REFERENCES `neubbs`.`forum_user` (`fu_id`))
-ENGINE = InnoDB
-DEFAULT CHARACTER SET = utf8
-COLLATE = utf8_bin;
-
-SHOW WARNINGS;
-CREATE INDEX `FM_S_FU_ID` ON `wdjk`.`forum_message` (`fm_sender_id` ASC) VISIBLE;
-
-SHOW WARNINGS;
-CREATE INDEX `FM_R_FU_ID` ON `wdjk`.`forum_message` (`fm_receiver_id` ASC) VISIBLE;
-
-SHOW WARNINGS;
 
 -- -----------------------------------------------------
 -- Table `wdjk`.`forum_topic`
