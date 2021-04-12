@@ -37,6 +37,31 @@
 			<artifactId>spring-boot-starter-test</artifactId>
 			<scope>test</scope>
 		</dependency>
+
+		<!-- screw (螺丝钉) 英:[skruː] ~ 简洁好用的数据库表结构文档生成工具-->
+		<!-- https://mvnrepository.com/artifact/cn.smallbun.screw/screw-core -->
+		<dependency>
+			<groupId>cn.smallbun.screw</groupId>
+			<artifactId>screw-core</artifactId>
+			<version>1.0.5</version>
+		</dependency>
+
+		<!-- https://mvnrepository.com/artifact/com.zaxxer/HikariCP -->
+		<dependency>
+			<groupId>com.zaxxer</groupId>
+			<artifactId>HikariCP</artifactId>
+			<version>4.0.3</version>
+		</dependency>
+
+		<!-- https://mvnrepository.com/artifact/mysql/mysql-connector-java -->
+		<dependency>
+			<groupId>mysql</groupId>
+			<artifactId>mysql-connector-java</artifactId>
+			<version>8.0.23</version>
+		</dependency>
+
+
+
 	</dependencies>
 
 	<build>
@@ -47,5 +72,9 @@
 			</plugin>
 		</plugins>
 	</build>
+
+
+
+
 
 </project>
