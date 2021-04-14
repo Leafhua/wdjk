@@ -142,7 +142,7 @@ SHOW WARNINGS;
 CREATE TABLE IF NOT EXISTS `wdjk`.`forum_topic_content` (
   `ftc_id` INT NOT NULL AUTO_INCREMENT COMMENT '话题内容 id',
   `ft_id` INT NOT NULL COMMENT '对应话题 id （对应 forum_topic）',
-  `fi_id` INT NOT NULL COMMENT '论坛IP ID',
+  `fi_id` INT NULL COMMENT '论坛IP ID',
   `ftc_content` LONGTEXT NOT NULL COMMENT '话题内容（longtext 类型，最大长度4294967295个字元 (2^32-1)）',
   `ftc_read` INT NULL DEFAULT '0' COMMENT '话题阅读数',
   `ftc_like` INT NULL DEFAULT '0' COMMENT '喜欢话题人数',
@@ -182,7 +182,7 @@ CREATE TABLE IF NOT EXISTS `wdjk`.`forum_topic_reply` (
   `ftr_id` INT NOT NULL COMMENT '话题回复 id',
   `fu_id` INT NULL DEFAULT NULL COMMENT '回复人 id',
   `ft_id` INT NULL DEFAULT NULL COMMENT '对应话题 id',
-  `fi_id` INT NOT NULL COMMENT '论坛IP ID',
+  `fi_id` INT NULL COMMENT '论坛IP ID',
   `ftr_content` VARCHAR(150) NOT NULL COMMENT '话题内容',
   `ftr_agree` INT NULL DEFAULT '0' COMMENT '回复点赞数',
   `ftr_oppose` INT NULL DEFAULT '0' COMMENT '回复反对数',
@@ -228,7 +228,7 @@ DROP TABLE IF EXISTS `wdjk`.`forum_user` ;
 SHOW WARNINGS;
 CREATE TABLE IF NOT EXISTS `wdjk`.`forum_user` (
   `fu_id` INT NOT NULL AUTO_INCREMENT COMMENT '用户id\n',
-  `fi_id` INT NOT NULL COMMENT '论坛IP ID',
+  `fi_id` INT NULL COMMENT '论坛IP ID',
   `fu_name` VARCHAR(15) NULL DEFAULT NULL COMMENT '用户名称 ',
   `fu_password` VARCHAR(200) NOT NULL COMMENT '用户密码',
   `fu_email` VARCHAR(255) NOT NULL COMMENT '用户邮箱地址\n',
