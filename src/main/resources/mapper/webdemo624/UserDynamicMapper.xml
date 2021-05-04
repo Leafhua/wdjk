@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.wdjk.webdemo624.mapper.UserDynamicMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.wdjk.webdemo624.entity.UserDynamic">
+        <id column="fud_id" property="fudId" />
+        <result column="fu_id" property="fuId" />
+        <result column="fud_public_info_array" property="fudPublicInfoArray" />
+    </resultMap>
+
+</mapper>

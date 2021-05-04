@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.wdjk.webdemo624.mapper.TopicContentMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.wdjk.webdemo624.entity.TopicContent">
+        <id column="ftc_id" property="ftcId" />
+        <result column="ft_id" property="ftId" />
+        <result column="fi_id" property="fiId" />
+        <result column="ftc_content" property="ftcContent" />
+        <result column="ftc_read" property="ftcRead" />
+        <result column="ftc_like" property="ftcLike" />
+        <result column="ftc_picture" property="ftcPicture" />
+    </resultMap>
+
+</mapper>

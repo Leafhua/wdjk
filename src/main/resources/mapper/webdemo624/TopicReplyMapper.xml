@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.wdjk.webdemo624.mapper.TopicReplyMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.wdjk.webdemo624.entity.TopicReply">
+        <id column="ftr_id" property="ftrId" />
+        <result column="fu_id" property="fuId" />
+        <result column="ft_id" property="ftId" />
+        <result column="fi_id" property="fiId" />
+        <result column="ftr_content" property="ftrContent" />
+        <result column="ftr_agree" property="ftrAgree" />
+        <result column="ftr_oppose" property="ftrOppose" />
+        <result column="ftr_createtime" property="ftrCreatetime" />
+    </resultMap>
+
+</mapper>

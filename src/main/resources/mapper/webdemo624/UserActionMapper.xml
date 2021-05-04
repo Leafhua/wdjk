@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.wdjk.webdemo624.mapper.UserActionMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.wdjk.webdemo624.entity.UserAction">
+        <id column="fua_id" property="fuaId" />
+        <result column="fu_id" property="fuId" />
+        <result column="fua_like_ft_id_array" property="fuaLikeFtIdArray" />
+        <result column="fua_collect_ft_id_array" property="fuaCollectFtIdArray" />
+        <result column="fua_attention_ft_id_array" property="fuaAttentionFtIdArray" />
+        <result column="fua_following_fu_id_array" property="fuaFollowingFuIdArray" />
+        <result column="fua_followed_fu_id_array" property="fuaFollowedFuIdArray" />
+    </resultMap>
+
+</mapper>
