@@ -5,11 +5,12 @@ mybatis-plus:
     cache-enabled: false
   mapper-locations: /mapper/*/*.xml
   type-aliases-package: com.wdjk.webdemo624.entity
-#  global-config:
-#    db-column-underline: true
-#    field-strategy: 0
-#    id-type: 0
-#    refresh-mapper: true
+  global-config:
+    db-config:
+      #主键类型 数据库id自增
+      id-type: auto
+      table-underline: true
+
 
 server:
   port: 8081
@@ -28,3 +29,6 @@ spring:
     type: com.zaxxer.hikari.HikariDataSource
     url: jdbc:mysql://localhost:3306/wdjk?useUnicode=true&useSSL=false&characterEncoding=utf8&serverTimezone=Asia/Shanghai
     username: zhuhua
+logging:
+  level:
+    com.wdjk.webdemo624.mapper: debug
