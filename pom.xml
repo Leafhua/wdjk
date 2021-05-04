@@ -25,6 +25,13 @@
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-web</artifactId>
 		</dependency>
+		<!-- spring-boot-starter-jdbc -->
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-jdbc</artifactId>
+			<version>2.4.5</version>
+		</dependency>
+
 
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
@@ -39,27 +46,70 @@
 		</dependency>
 
 		<!-- screw (螺丝钉) 英:[skruː] ~ 简洁好用的数据库表结构文档生成工具-->
-		<!-- https://mvnrepository.com/artifact/cn.smallbun.screw/screw-core -->
 		<dependency>
 			<groupId>cn.smallbun.screw</groupId>
 			<artifactId>screw-core</artifactId>
 			<version>1.0.5</version>
 		</dependency>
 
-		<!-- https://mvnrepository.com/artifact/com.zaxxer/HikariCP -->
+		<!-- HikariCP -->
 		<dependency>
 			<groupId>com.zaxxer</groupId>
 			<artifactId>HikariCP</artifactId>
 			<version>4.0.3</version>
 		</dependency>
 
-		<!-- https://mvnrepository.com/artifact/mysql/mysql-connector-java -->
+		<!-- mysql数据库 -->
 		<dependency>
 			<groupId>mysql</groupId>
 			<artifactId>mysql-connector-java</artifactId>
 			<version>8.0.23</version>
 		</dependency>
 
+		<!-- mybatis-plus -->
+		<dependency>
+			<groupId>com.baomidou</groupId>
+			<artifactId>mybatis-plus-boot-starter</artifactId>
+			<version>3.4.2</version>
+		</dependency>
+		<!-- mybatis-plus代码自动生成 -->
+		<dependency>
+			<groupId>com.baomidou</groupId>
+			<artifactId>mybatis-plus-generator</artifactId>
+			<version>3.4.1</version>
+		</dependency>
+		<!-- velocity模板引擎 mybatis-plus代码生成器需要  -->
+		<dependency>
+			<groupId>org.apache.velocity</groupId>
+			<artifactId>velocity-engine-core</artifactId>
+			<version>2.3</version>
+		</dependency>
+
+		<!-- lombok简化实体类 -->
+		<dependency>
+			<groupId>org.projectlombok</groupId>
+			<artifactId>lombok</artifactId>
+			<version>1.18.20</version>
+			<scope>provided</scope>
+		</dependency>
+
+		<!-- swagger-ui -->
+		<dependency>
+			<groupId>io.springfox</groupId>
+			<artifactId>springfox-swagger-ui</artifactId>
+			<version>3.0.0</version>
+		</dependency>
+		<dependency>
+			<groupId>io.springfox</groupId>
+			<artifactId>springfox-swagger2</artifactId>
+			<version>3.0.0</version>
+		</dependency>
+
+		<dependency>
+			<groupId>junit</groupId>
+			<artifactId>junit</artifactId>
+			<scope>test</scope>
+		</dependency>
 
 
 	</dependencies>
