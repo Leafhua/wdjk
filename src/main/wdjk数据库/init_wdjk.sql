@@ -34,7 +34,7 @@ SHOW WARNINGS;
 CREATE TABLE IF NOT EXISTS `wdjk`.`forum_ipaddress` (
   `fi_id` INT NOT NULL AUTO_INCREMENT COMMENT '论坛IP ID',
   `fi_ipv4` VARCHAR(16) NULL DEFAULT NULL COMMENT 'ipv4地址',
-  `fi_ipv6` VARCHAR(128) NULL DEFAULT NULL COMMENT 'ipv6地址\n',
+  `fi_ipv6` VARCHAR(128) NULL DEFAULT NULL COMMENT 'ipv6地址',
   PRIMARY KEY (`fi_id`))
 ENGINE = InnoDB
 COMMENT = 'ip表，存储ip地址';
@@ -227,14 +227,14 @@ DROP TABLE IF EXISTS `wdjk`.`forum_user` ;
 
 SHOW WARNINGS;
 CREATE TABLE IF NOT EXISTS `wdjk`.`forum_user` (
-  `fu_id` INT NOT NULL AUTO_INCREMENT COMMENT '用户id\n',
+  `fu_id` INT NOT NULL AUTO_INCREMENT COMMENT '用户id',
   `fi_id` INT NULL COMMENT '论坛IP ID',
   `fu_name` VARCHAR(15) NULL DEFAULT NULL COMMENT '用户名称 ',
   `fu_password` VARCHAR(200) NOT NULL COMMENT '用户密码',
-  `fu_email` VARCHAR(255) NOT NULL COMMENT '用户邮箱地址\n',
+  `fu_email` VARCHAR(255) NOT NULL COMMENT '用户邮箱地址',
   `fu_birthday` VARCHAR(20) NULL DEFAULT NULL COMMENT '用户生日',
   `fu_avator` VARCHAR(100) NULL DEFAULT NULL COMMENT '用户头像地址',
-  `fu_description` VARCHAR(255) NULL DEFAULT NULL COMMENT '用户介绍\n',
+  `fu_description` VARCHAR(255) NULL DEFAULT NULL COMMENT '用户介绍',
   `fu_theme` INT NOT NULL DEFAULT '0' COMMENT '用户主题，默认0号主题',
   `fu_rank` INT NOT NULL DEFAULT '0' COMMENT '用户级别(0-普通用户，1-管理员)',
   `fu_createtime` DATETIME NULL DEFAULT CURRENT_TIMESTAMP COMMENT '用户创建时间',
