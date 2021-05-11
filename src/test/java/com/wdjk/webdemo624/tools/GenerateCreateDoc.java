@@ -25,7 +25,7 @@ public class GenerateCreateDoc {
     /**
      * 文档生成
      */
-    public void documentGeneration() {
+    public static void main(String[] args)  {
         //数据源
 
         HikariConfig hikariConfig = new HikariConfig();

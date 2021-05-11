@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>无敌女高中生匿名留言板-激活账号</title>
+</head>
+<body>
+    <div>
+        <p>
+            <b th:text="${email}">xxx@xxx.com</b>,您好！
+        </p>
+        <p>
+            您正在<a th:href="${url}">无敌女高中生匿名留言板</a>
+            进行注册，验证码有效时间为24小时，请尽快完成注册！
+
+        </p>
+        <p>
+            验证码为：<b th:text="${code}">xxxxxx</b>
+        </p>
+
+    </div>
+
+</body>
+</html>

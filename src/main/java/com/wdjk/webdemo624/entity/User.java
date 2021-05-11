@@ -59,6 +59,9 @@ public class User implements Serializable {
     @ApiModelProperty(value = "用户级别(0-普通用户，1-管理员)")
     private Integer fuRank;
 
+    @ApiModelProperty(value = "激活状态(0-未激活，1-已激活)")
+    private Integer fuState;
+
     @ApiModelProperty(value = "用户创建时间")
     @TableField(fill = FieldFill.INSERT)
     private Date fuCreatetime;

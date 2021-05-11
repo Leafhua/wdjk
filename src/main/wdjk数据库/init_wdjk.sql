@@ -237,6 +237,7 @@ CREATE TABLE IF NOT EXISTS `wdjk`.`forum_user` (
   `fu_description` VARCHAR(255) NULL DEFAULT NULL COMMENT '用户介绍',
   `fu_theme` INT NOT NULL DEFAULT '0' COMMENT '用户主题，默认0号主题',
   `fu_rank` INT NOT NULL DEFAULT '0' COMMENT '用户级别(0-普通用户，1-管理员)',
+  'fu_state' INT NOT NULL DEFAULT '0' COMMENT '激活状态(0-未激活，1-已激活)',
   `fu_createtime` DATETIME NULL DEFAULT CURRENT_TIMESTAMP COMMENT '用户创建时间',
   PRIMARY KEY (`fu_id`),
   CONSTRAINT `FU_FI_ID`
