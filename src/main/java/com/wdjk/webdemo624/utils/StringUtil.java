@@ -7,6 +7,7 @@ import com.wdjk.webdemo624.constant.api.SetConst;
 import com.wdjk.webdemo624.constant.log.LogWarnEnum;
 import com.wdjk.webdemo624.exception.UtilClassException;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.context.annotation.PropertySource;
 import org.springframework.core.io.ClassPathResource;
 import org.springframework.core.io.Resource;
 import org.springframework.core.io.support.PropertiesLoaderUtils;
@@ -34,11 +35,17 @@ public final class StringUtil {
 
 //    private static final String NGINX_URL = null;
 
-    @Value("${wdjk.path.domain}")
-    private static String domain;
 
-    @Value("${server.servlet.context-path}")
-    private static String contextPath;
+    private static final String DOMAIN = "http://localhost:8081";
+
+
+    private static final String CONTEXT_PATH ="/wdjk" ;
+
+
+
+
+
+
 
     /*
      * ***********************************************
@@ -116,7 +123,10 @@ public final class StringUtil {
         String userAvatar = (String) userInfoMap.get(ParamConst.AVATOR);
 
 
-        return (domain+"/"+contextPath+ ParamConst.AVATAR_PATH+RandomUtil.generateRandomNumbers(1,1000)+".png");
+        return (DOMAIN+"/"+CONTEXT_PATH+ ParamConst.AVATAR_PATH+RandomUtil.generateRandomNumbers(1,1000)+".png");
+    }
+    public static String generateUserAvatarUrl() {
+        return (DOMAIN+"/"+CONTEXT_PATH+ ParamConst.AVATAR_PATH+RandomUtil.generateRandomNumbers(1,1000)+".png");
     }
 
     /**

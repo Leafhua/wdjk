@@ -8,10 +8,12 @@ import com.wdjk.webdemo624.constant.api.SetConst;
 import com.wdjk.webdemo624.entity.User;
 import com.wdjk.webdemo624.mapper.UserMapper;
 import com.wdjk.webdemo624.service.UserService;
+import com.wdjk.webdemo624.utils.StringUtil;
 import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.data.redis.core.StringRedisTemplate;
@@ -84,6 +86,12 @@ public class WebDemoApplicationTests  {
     @Test
     public void redisTest(){
         redisTemplate.opsForValue().set("222222@qq.com","code",SetConst.ONE_DAY_MS, TimeUnit.MICROSECONDS);
+    }
+
+
+    @Test
+    public void pnt(){
+
     }
 
 }

@@ -1,5 +1,8 @@
 package com.wdjk.webdemo624.utils;
 
+import com.wdjk.webdemo624.constant.api.ApiMessage;
+import com.wdjk.webdemo624.constant.log.LogWarnEnum;
+import com.wdjk.webdemo624.exception.UtilClassException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -47,7 +50,7 @@ public class MailUtil {
             helper.setText(content,true);
             mailSender.send(helper.getMimeMessage());
         } catch (MessagingException e) {
-            logger.error("发送邮件失败"+e.getMessage());
+            throw new UtilClassException(ApiMessage.UNKNOWN_ERROR).log(LogWarnEnum.)
         }
 
     }

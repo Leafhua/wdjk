@@ -4,6 +4,7 @@ import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.mysql.cj.util.StringUtils;
 import com.wdjk.webdemo624.constant.api.ParamConst;
 import com.wdjk.webdemo624.constant.api.SetConst;
+import com.wdjk.webdemo624.dto.ApiJsonDTO;
 import com.wdjk.webdemo624.entity.User;
 import com.wdjk.webdemo624.mapper.UserMapper;
 import com.wdjk.webdemo624.service.UserService;
@@ -14,10 +15,7 @@ import io.swagger.annotations.ApiParam;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.data.redis.core.StringRedisTemplate;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import org.thymeleaf.TemplateEngine;
 import org.thymeleaf.context.Context;
 
@@ -95,78 +93,20 @@ public class AccountController {
     }
 
     /**
-     *
-     * @param user user中至少
-     * @return
+     * 注册
+     * @param requestBodyParamsMap request-body 内 JSON 数据
+     * @return ApiJsonDTO 接口 JSON传输对象
      */
     @RequestMapping(path = "/register",method = RequestMethod.POST)
-    public Map<String,Object> register(User user,String vCode){
+    public ApiJsonDTO registerAccount(@RequestBody Map<String,Object> requestBodyParamsMap){
 
-
-
-        Map<String,Object> map = new HashMap<>(2);
-        //判空操作
-        if (user == null){
-            throw new IllegalArgumentException("参数不能为空!");
-        }
-        if (StringUtils.isNullOrEmpty(user.getFuName())){
-            map.put("usernameMsg","账号不能为空！");
-            return map;
-        }
-        if (StringUtils.isNullOrEmpty(user.getFuPassword())){
-            map.put("passwordMsg","密码不能为空！");
-            return map;
-        }
-        if (StringUtils.isNullOrEmpty(user.getFuEmail())){
-            map.put("emailMsg","邮箱不能为空！");
-            return map;
-        }
-        QueryWrapper<User> wrapper = new QueryWrapper<>();
-        //判断数据库中是否存在
-
-        wrapper.eq("fu_name",user.getFuName());
-        User one = userService.getOne(wrapper);
-        if (one != null){
-            map.put("usernameMsg","用户名已被注册！");
-        }
-        wrapper.clear();
-
-        wrapper.eq("fu_email",user.getFuEmail());
-        one = userService.getOne(wrapper);
-        if (one != null){
-            map.put("emailMsg","该邮箱已被注册！");
-        }
-        wrapper.clear();
-
+        String username = (String) requestBodyParamsMap.get(ParamConst.USERNAME);
+        String password = (String) requestBodyParamsMap.get(ParamConst.PASSWORD);
+        String email = (String) requestBodyParamsMap.get(ParamConst.EMAIL);
         String code = RandomUtil.generateRandomString(6);
-
-        user.setFuPassword(SecretUtil.encryptMd5(user.getFuPassword()));
-        user.setFuState(0);
-        user.setFuAvator(domain+"/"+contextPath+ ParamConst.AVATAR_PATH+RandomUtil.generateRandomNumbers(1,1000)+".png");
-        stringRedisTemplate.opsForValue().set(user.getFuEmail(),code,SetConst.TIME_SIXTY_S*30, TimeUnit.SECONDS);
-        try {
-            Context context = new Context();
-            context.setVariable("email",user.getFuEmail());
-            String url = domain + contextPath;
-            context.setVariable("url",url);
-            context.setVariable("code",code);
-            String content = templateEngine.process("/mail/activation",context);
-            mailUtil.sendMail (user.getFuEmail(),"激活账号",content);
-            map.put("msg","验证码发送成功，30分钟内有效，请注意查收！");
-        } catch (Exception e) {
-            e.printStackTrace();
-            map.put("msg","无法发送邮件，请稍后重试！");
-        }
-        userMapper.insert(user);
-        if(vCode == stringRedisTemplate.opsForValue().get(user.getFuEmail())){
-            user.setFuState(SetConst.ACTIVE);
-            userMapper.updateById(user);
-        }
-        else {
-            map.put("codeMsg","验证码错误");
-        }
+        User user = userService.register(username,password,email);
 
 
-        return map;
+
     }
 }
