@@ -1,28 +1,40 @@
 package com.wdjk.webdemo624.utils;
 
+
+import com.wdjk.webdemo624.constant.api.ApiMessage;
 import com.wdjk.webdemo624.constant.api.SetConst;
+import com.wdjk.webdemo624.constant.log.LogWarnEnum;
+import com.wdjk.webdemo624.exception.UtilClassException;
 
 /**
- * @program: webDemo
- * @description
- * @author: zhuhua
- * @create: 2021-05-09 22:04
- **/
-public class RandomUtil {
+ * 随机数 工具类
+ *      - 生成随机数
+ *      - 生成随机字符串
+ *
+ * @author Suvan
+ */
+public final class RandomUtil {
+
+    private RandomUtil() { }
+
     /**
-     *生成随机数
+     * 生成随机数
      *      - Math.random() 能生成 >= 0 且 < 1 的双精度伪随机数
      *      - 指定 min（最小值），max（最大值）min <= random numbers <= max
      *      - 参考公式：(随机数 * (max - min + 1)) + 1
+     *      - 需满足 min > max，否则抛出异常
      *      - int 极限值范围
      *          - 最大值：Integer.MAX_VALUE = 0x7fffffff = 2147483647
      *          - 最小值：Integer.MIN_VALUE = 0x80000000 =-2147483648
-     * @param min
-     * @param max
-     * @return
+     *
+     * @return int 生成随机数
      */
-    public static int generateRandomNumbers(int min, int max){
-        return (int) ((Math.random() * (max - min + 1))) + min;
+    public static int generateRandomNumbers(int min, int max) {
+        if (min > max) {
+            throw new UtilClassException(ApiMessage.UNKNOWN_ERROR).log(LogWarnEnum.UC8);
+        }
+        //return new Random().nextInt(max - min + 1) + min;
+        return  (int) ((Math.random() * (max - min + 1))) + min;
     }
 
     /**
@@ -49,8 +61,8 @@ public class RandomUtil {
             tempASCII = point == SetConst.POINT_ONE
                     ? (int) (Math.random() * SetConst.ALL_LETTER_AMOUNT) + SetConst.LOWERCASE_ASCII_MIN
                     : point == SetConst.POINT_TWO
-                    ? (int) (Math.random() * SetConst.ALL_LETTER_AMOUNT) + SetConst.UPPERCASE_ASCII_MIN
-                    : (int) (Math.random() * SetConst.FIGURE_MAX);
+                        ? (int) (Math.random() * SetConst.ALL_LETTER_AMOUNT) + SetConst.UPPERCASE_ASCII_MIN
+                        : (int) (Math.random() * SetConst.FIGURE_MAX);
 
             resultString.append(tempASCII <= SetConst.FIGURE_MAX ? String.valueOf(tempASCII) : (char) tempASCII);
         }

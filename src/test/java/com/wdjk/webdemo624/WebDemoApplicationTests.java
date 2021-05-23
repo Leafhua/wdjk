@@ -83,7 +83,7 @@ public class WebDemoApplicationTests  {
     }
     @Test
     public void redisTest(){
-        redisTemplate.opsForValue().set("222222@qq.com","code",SetConst.ONE_DAY_S, TimeUnit.SECONDS);
+        redisTemplate.opsForValue().set("222222@qq.com","code",SetConst.ONE_DAY_MS, TimeUnit.MICROSECONDS);
     }
 
 }

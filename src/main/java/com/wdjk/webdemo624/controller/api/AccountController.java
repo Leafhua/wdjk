@@ -2,6 +2,7 @@ package com.wdjk.webdemo624.controller.api;
 
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.mysql.cj.util.StringUtils;
+import com.wdjk.webdemo624.constant.api.ParamConst;
 import com.wdjk.webdemo624.constant.api.SetConst;
 import com.wdjk.webdemo624.entity.User;
 import com.wdjk.webdemo624.mapper.UserMapper;
@@ -141,7 +142,7 @@ public class AccountController {
 
         user.setFuPassword(SecretUtil.encryptMd5(user.getFuPassword()));
         user.setFuState(0);
-        user.setFuAvator(domain+"/"+contextPath+SetConst.AVATAR_PATH+RandomUtil.generateRandomNumbers(1,1000)+".png");
+        user.setFuAvator(domain+"/"+contextPath+ ParamConst.AVATAR_PATH+RandomUtil.generateRandomNumbers(1,1000)+".png");
         stringRedisTemplate.opsForValue().set(user.getFuEmail(),code,SetConst.TIME_SIXTY_S*30, TimeUnit.SECONDS);
         try {
             Context context = new Context();

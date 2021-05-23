@@ -29,6 +29,13 @@ public class MailUtil {
     @Value("${spring.mail.username}")
     private String from;
 
+    /**
+     *
+     *
+     * @param to 收件人
+     * @param subject 发送主题
+     * @param content 发送内容
+     */
     public void sendMail(String to,String subject,String content){
 
         try {
