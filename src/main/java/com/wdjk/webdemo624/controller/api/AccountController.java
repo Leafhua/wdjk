@@ -1,30 +1,22 @@
 package com.wdjk.webdemo624.controller.api;
 
-import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.mysql.cj.util.StringUtils;
 import com.wdjk.webdemo624.constant.api.ParamConst;
-import com.wdjk.webdemo624.constant.api.SetConst;
 import com.wdjk.webdemo624.dto.ApiJsonDTO;
 import com.wdjk.webdemo624.entity.User;
 import com.wdjk.webdemo624.mapper.UserMapper;
 import com.wdjk.webdemo624.service.UserService;
-import com.wdjk.webdemo624.utils.MailUtil;
 import com.wdjk.webdemo624.utils.RandomUtil;
-import com.wdjk.webdemo624.utils.SecretUtil;
 import io.swagger.annotations.ApiParam;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.data.redis.core.StringRedisTemplate;
 import org.springframework.web.bind.annotation.*;
 import org.thymeleaf.TemplateEngine;
-import org.thymeleaf.context.Context;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-import java.util.HashMap;
 import java.util.Map;
-import java.util.concurrent.TimeUnit;
 
 /**
  * @program: webDemo
