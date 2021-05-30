@@ -14,7 +14,7 @@ import java.util.concurrent.TimeUnit;
  *
  * @author Suvan
  */
-@Service("redisServiceImpl")
+@Service
 public class CacheServiceImpl implements ICacheService {
 
     private StringRedisTemplate redisTemplate;

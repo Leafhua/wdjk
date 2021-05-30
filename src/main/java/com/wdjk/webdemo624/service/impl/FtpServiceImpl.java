@@ -17,7 +17,7 @@ import java.io.IOException;
  *
  * @author Suvan
  */
-@Service("ftpServiceImpl")
+@Service
 public class FtpServiceImpl implements IFtpService {
 
     @Override

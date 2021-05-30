@@ -17,7 +17,7 @@ import java.awt.image.BufferedImage;
  *
  * @author Suvan
  */
-@Service("captchaServiceImpl")
+@Service
 public class CaptchaServiceImpl implements ICaptchaService {
 
     private final Producer captchaProducer;

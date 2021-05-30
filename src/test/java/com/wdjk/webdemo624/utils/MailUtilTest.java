@@ -1,7 +1,7 @@
 package com.wdjk.webdemo624.utils;
 
 import com.wdjk.webdemo624.WebDemoApplication;
-import org.junit.jupiter.api.Test;
+import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -13,8 +13,11 @@ import org.thymeleaf.context.Context;
 import static org.junit.jupiter.api.Assertions.*;
 @RunWith(SpringRunner.class)
 @SpringBootTest
-@ContextConfiguration(classes = WebDemoApplication.class)
-class MailUtilTest {
+public class MailUtilTest {
 
+    @Test
+     public void httpUtilTest(){
+        System.out.println(PublicParamsUtil.getRequest());
+    }
 
 }

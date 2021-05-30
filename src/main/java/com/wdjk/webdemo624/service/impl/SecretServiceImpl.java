@@ -15,7 +15,7 @@ import org.springframework.stereotype.Service;
  *
  * @author Suvan
  */
-@Service("secretServiceImpl")
+@Service
 public class SecretServiceImpl implements ISecretService {
 
     @Override

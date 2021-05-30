@@ -143,7 +143,7 @@ public final class SecretUtil {
         User user = new User();
             user.setFuId(decodedJWT.getClaim(ParamConst.ID).asInt());
             user.setFuName(decodedJWT.getClaim(ParamConst.NAME).asString());
-            user.setFuRank(Integer.valueOf(decodedJWT.getClaim(ParamConst.RANK).asString()));
+            user.setFuRank(decodedJWT.getClaim(ParamConst.RANK).asInt());
             user.setFuState(decodedJWT.getClaim(ParamConst.STATE).asInt());
 
         return user;

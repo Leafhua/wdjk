@@ -113,14 +113,11 @@ public final class ParamValidateUtil {
 
     static {
         allowEmptyTypeSet.add(ParamConst.BIRTHDAY);
-        allowEmptyTypeSet.add(ParamConst.POSITION);
         allowEmptyTypeSet.add(ParamConst.DESCRIPTION);
 
         typeScopeMap.put(ParamConst.USERNAME, new Scope(USERNAME_MIN, USERNAME_MAX));
         typeScopeMap.put(ParamConst.PASSWORD, new Scope(PASSWORD_MIN, PASSWORD_MAX));
-        typeScopeMap.put(ParamConst.SEX, new Scope(SEX_MIN, SEX_MAX));
         typeScopeMap.put(ParamConst.BIRTHDAY, new Scope(BIRTHDAY_MIN, BIRTHDAY_MAX));
-        typeScopeMap.put(ParamConst.POSITION, new Scope(POSITION_MIN, POSITION_MAX));
         typeScopeMap.put(ParamConst.DESCRIPTION, new Scope(DESCRIPTION_MIN, DESCRIPTION_MAX));
         typeScopeMap.put(ParamConst.CAPTCHA, new Scope(CAPTCHA_MIN, CAPTCHA_MAX));
         typeScopeMap.put(ParamConst.ID, new Scope(ID_MIN, ID_MAX));
@@ -263,7 +260,7 @@ public final class ParamValidateUtil {
         }
 
         try {
-            Class<?> clazz = Class.forName("org.neusoft.neubbs.utils.PatternUtil");
+            Class<?> clazz = Class.forName("com.wdjk.webdemo624.utils.PatternUtil");
             Method method = clazz.getDeclaredMethod(pattern.methodName, String.class);
 
             if (!((boolean) method.invoke(null, param))) {

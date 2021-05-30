@@ -7,6 +7,7 @@ import com.wdjk.webdemo624.utils.CookieUtil;
 import javax.servlet.ServletContext;
 import javax.servlet.ServletRequestEvent;
 import javax.servlet.ServletRequestListener;
+import javax.servlet.annotation.WebListener;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import javax.servlet.http.HttpSessionEvent;
@@ -22,6 +23,7 @@ import java.util.concurrent.ConcurrentHashMap;
  *
  *  @author Suvan
  */
+@WebListener
 public class ClientListener implements HttpSessionListener, ServletRequestListener {
 
     private ConcurrentHashMap<String, HttpSession> loggedSessionMap = new ConcurrentHashMap<>();

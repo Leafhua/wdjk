@@ -4,6 +4,7 @@ package com.wdjk.webdemo624.controller.handler;
 import com.wdjk.webdemo624.constant.api.ParamConst;
 import com.wdjk.webdemo624.utils.SecretUtil;
 import org.springframework.beans.factory.config.PropertyPlaceholderConfigurer;
+import org.springframework.stereotype.Component;
 
 /**
  * 解密配置文件处理器
@@ -12,6 +13,7 @@ import org.springframework.beans.factory.config.PropertyPlaceholderConfigurer;
  *
  * @author Suvan
  */
+@Component
 public class DecryptConfigurationFileHandler extends PropertyPlaceholderConfigurer {
     @Override
     protected String convertProperty(String propertyName, String propertyValue) {

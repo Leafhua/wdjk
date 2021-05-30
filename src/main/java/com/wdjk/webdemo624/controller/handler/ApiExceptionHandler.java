@@ -9,6 +9,8 @@ import com.wdjk.webdemo624.exception.IPrintLog;
 import com.wdjk.webdemo624.utils.JsonUtil;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import org.springframework.context.annotation.Configuration;
+import org.springframework.stereotype.Component;
 import org.springframework.web.servlet.HandlerExceptionResolver;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -34,6 +36,7 @@ import java.util.Map;
  *
  * @author suvan
  */
+@Component
 public class ApiExceptionHandler implements HandlerExceptionResolver {
 
     private Logger logger = LogManager.getRootLogger();

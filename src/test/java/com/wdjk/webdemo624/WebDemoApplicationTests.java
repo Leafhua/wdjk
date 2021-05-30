@@ -1,6 +1,7 @@
 package com.wdjk.webdemo624;
 
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
+import com.baomidou.mybatisplus.core.conditions.update.UpdateWrapper;
 import com.talanlabs.avatargenerator.Avatar;
 import com.talanlabs.avatargenerator.TriangleAvatar;
 import com.talanlabs.avatargenerator.cat.CatAvatar;
@@ -36,6 +37,8 @@ public class WebDemoApplicationTests  {
     private UserService userService;
     @Autowired
     private StringRedisTemplate redisTemplate;
+
+    UpdateWrapper<User> updateWrapper = new UpdateWrapper<>();
 
     @Test
     public void testSelect() {
@@ -90,7 +93,13 @@ public class WebDemoApplicationTests  {
 
 
     @Test
-    public void pnt(){
+    public void updateWrapperTest(){
+        updateWrapper.eq("fu_name","linxi")
+                .set("fu_state",1);
+        User user = userMapper.selectById(65);
+        System.out.println(user);
+        System.out.println(userMapper.update(null,updateWrapper));
+        System.out.println(userMapper.selectById(user.getFuId()));
 
     }
 

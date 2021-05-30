@@ -17,7 +17,7 @@ import org.springframework.stereotype.Service;
  *
  * @author Suvan
  */
-@Service("emailServiceImpl")
+@Service
 public class EmailServiceImpl implements IEmailService {
 
     private final ThreadPoolTaskExecutor taskExecutor;

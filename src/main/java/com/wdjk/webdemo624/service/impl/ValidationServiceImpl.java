@@ -17,7 +17,7 @@ import org.springframework.web.multipart.MultipartFile;
  *
  * @author Suvan
  */
-@Service("paramCheckServiceImpl")
+@Service
 public class ValidationServiceImpl implements IValidationService {
 
     @Override

@@ -11,7 +11,7 @@ import org.springframework.stereotype.Service;
  *
  * @author Suvan
  */
-@Service("randomServiceImpl")
+@Service
 public class RandomServiceImpl implements IRandomService {
 
     @Override

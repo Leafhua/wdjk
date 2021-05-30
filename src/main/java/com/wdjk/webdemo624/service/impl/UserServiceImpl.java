@@ -1,9 +1,12 @@
 package com.wdjk.webdemo624.service.impl;
 
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
+import com.baomidou.mybatisplus.core.conditions.update.UpdateWrapper;
 import com.wdjk.webdemo624.constant.api.ApiMessage;
+import com.wdjk.webdemo624.constant.api.SetConst;
 import com.wdjk.webdemo624.constant.log.LogWarnEnum;
 import com.wdjk.webdemo624.entity.User;
+import com.wdjk.webdemo624.exception.PermissionException;
 import com.wdjk.webdemo624.exception.ServiceException;
 import com.wdjk.webdemo624.mapper.UserMapper;
 import com.wdjk.webdemo624.service.UserService;
@@ -35,6 +38,7 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements Us
     private UserMapper userMapper;
 
     QueryWrapper<User> wrapper = new QueryWrapper<>();
+    UpdateWrapper<User> updateWrapper = new UpdateWrapper<>();
 
     @Override
     public User register(String username, String password, String email) {
@@ -153,5 +157,46 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements Us
         MapFilterUtil.filterUserInfo(userInfoMap);
 
         return userInfoMap;
+    }
+
+    @Override
+    public User loginVerification(String username, String password) {
+        User user;
+
+        try {
+            user = this.getUserInfoByName(username);
+        }
+        catch (ServiceException ae){
+            throw new ServiceException(ApiMessage.USERNAME_OR_PASSWORD_INCORRECT).log(ae.getLog());
+        }
+
+        String cipherText = this.encryptUserPassword(password);
+        if (!cipherText.equals(user.getFuPassword())){
+            throw new ServiceException(ApiMessage.USERNAME_OR_PASSWORD_INCORRECT).log(LogWarnEnum.US7);
+        }
+
+        return user;
+    }
+
+    @Override
+    public boolean isUserActivatedByState(int userCurrentState) {
+        return userCurrentState == SetConst.ACCOUNT_ACTIVATED_STATE;
+    }
+
+    @Override
+    public void confirmUserMatchCookieUser(String inputUsername, User cookieUser) {
+        if (cookieUser == null || !inputUsername.equals(cookieUser.getFuName())) {
+            throw new PermissionException(ApiMessage.NO_PERMISSION).log(LogWarnEnum.US10);
+        }
+    }
+
+    @Override
+    public void alterUserEmail(String username, String newEmail) {
+        this.getUserInfoByName(username);
+        this.confirmUserNotOccupiedByEmail(newEmail);
+        updateWrapper.eq("fu_name",username).set("fu_email",newEmail);
+        if (userMapper.update(null,updateWrapper) != 1){
+            throw new ServiceException(ApiMessage.DATABASE_EXCEPTION).log(LogWarnEnum.US2);
+        }
     }
 }

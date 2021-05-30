@@ -73,6 +73,44 @@ public interface UserService extends IService<User> {
     User getUserInfoByEmail(String email);
 
 
+    /**
+     * 登录验证
+     *
+     * @param username 用户名
+     * @param password 用户密码
+     * @return User 通过登录验证,获取用户信息
+     */
+    User loginVerification(String username, String password);
+
+    /**
+     * 判断用户激活状态
+     *
+     * @param userCurrentState 用户当前激活状态
+     * @return boolean 激活状态（true - 激活，false - 未激活）
+     */
+    boolean isUserActivatedByState(int userCurrentState);
+
+    /**
+     * 确认用户匹配 Cookie 用户
+     *      - 比较输入用户名与 Cookie 用户名
+     *      - 不匹配则抛出“无权限”异常，无权进行非本用户操作
+     *
+     * @param inputUsername 输入用户名
+     * @param cookieUser Cookie 用户对象
+     */
+    void confirmUserMatchCookieUser(String inputUsername, User cookieUser);
+
+    /**
+     * 修改用户邮箱
+     *      - username 需验证存在性
+     *      - newEmail 需验证是否被占用
+     *
+     * @param username 用户名
+     * @param newEmail 用户新邮箱
+     */
+    void alterUserEmail(String username, String newEmail);
+
+
 
 
 }

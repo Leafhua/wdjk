@@ -24,7 +24,7 @@ import java.io.IOException;
  *
  * @author Suvan
  */
-@Service("httpServiceImpl")
+@Service
 public class HttpServiceImpl implements IHttpService {
 
 
