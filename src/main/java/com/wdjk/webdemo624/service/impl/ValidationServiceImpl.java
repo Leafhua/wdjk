@@ -1,13 +1,14 @@
 package com.wdjk.webdemo624.service.impl;
 
-import org.neusoft.neubbs.constant.api.ApiMessage;
-import org.neusoft.neubbs.constant.api.ParamConst;
-import org.neusoft.neubbs.constant.api.SetConst;
-import org.neusoft.neubbs.constant.log.LogWarnEnum;
-import org.neusoft.neubbs.exception.ParamsErrorException;
-import org.neusoft.neubbs.service.IValidationService;
-import org.neusoft.neubbs.utils.ParamValidateUtil;
-import org.neusoft.neubbs.utils.PatternUtil;
+
+import com.wdjk.webdemo624.constant.api.ApiMessage;
+import com.wdjk.webdemo624.constant.api.ParamConst;
+import com.wdjk.webdemo624.constant.api.SetConst;
+import com.wdjk.webdemo624.constant.log.LogWarnEnum;
+import com.wdjk.webdemo624.exception.ParamsErrorException;
+import com.wdjk.webdemo624.service.IValidationService;
+import com.wdjk.webdemo624.utils.ParamValidateUtil;
+import com.wdjk.webdemo624.utils.PatternUtil;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 

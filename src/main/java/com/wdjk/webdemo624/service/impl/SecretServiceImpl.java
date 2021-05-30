@@ -1,12 +1,13 @@
 package com.wdjk.webdemo624.service.impl;
 
-import org.neusoft.neubbs.constant.api.ApiMessage;
-import org.neusoft.neubbs.constant.log.LogWarnEnum;
-import org.neusoft.neubbs.entity.UserDO;
-import org.neusoft.neubbs.exception.ServiceException;
-import org.neusoft.neubbs.service.ISecretService;
-import org.neusoft.neubbs.utils.SecretUtil;
-import org.neusoft.neubbs.utils.StringUtil;
+
+import com.wdjk.webdemo624.constant.api.ApiMessage;
+import com.wdjk.webdemo624.constant.log.LogWarnEnum;
+import com.wdjk.webdemo624.entity.User;
+import com.wdjk.webdemo624.exception.ServiceException;
+import com.wdjk.webdemo624.service.ISecretService;
+import com.wdjk.webdemo624.utils.SecretUtil;
+import com.wdjk.webdemo624.utils.StringUtil;
 import org.springframework.stereotype.Service;
 
 /**
@@ -23,14 +24,14 @@ public class SecretServiceImpl implements ISecretService {
     }
 
     @Override
-    public String generateUserInfoAuthentication(UserDO user) {
+    public String generateUserInfoAuthentication(User user) {
         return SecretUtil.generateUserInfoToken(user);
     }
 
     @Override
-    public UserDO getUserInfoByAuthentication(String authentication) {
+    public User getUserInfoByAuthentication(String authentication) {
         //input authentication and key
-        UserDO user = SecretUtil.decryptUserInfoToken(authentication);
+        User user = SecretUtil.decryptUserInfoToken(authentication);
         if (user == null) {
             throw new ServiceException(ApiMessage.TOKEN_EXPIRED).log(LogWarnEnum.US4);
         }

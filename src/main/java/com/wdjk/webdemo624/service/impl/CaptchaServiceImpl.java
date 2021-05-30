@@ -2,6 +2,10 @@ package com.wdjk.webdemo624.service.impl;
 
 
 
+import com.google.code.kaptcha.Producer;
+import com.wdjk.webdemo624.constant.api.ApiMessage;
+import com.wdjk.webdemo624.constant.log.LogWarnEnum;
+import com.wdjk.webdemo624.exception.ServiceException;
 import com.wdjk.webdemo624.service.ICaptchaService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

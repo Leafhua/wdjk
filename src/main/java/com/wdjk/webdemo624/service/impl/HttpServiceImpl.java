@@ -1,14 +1,14 @@
 package com.wdjk.webdemo624.service.impl;
 
-import org.neusoft.neubbs.constant.api.ApiMessage;
-import org.neusoft.neubbs.constant.api.ParamConst;
-import org.neusoft.neubbs.constant.api.SetConst;
-import org.neusoft.neubbs.constant.log.LogWarnEnum;
-import org.neusoft.neubbs.entity.properties.NeubbsConfigDO;
-import org.neusoft.neubbs.exception.ServiceException;
-import org.neusoft.neubbs.service.IHttpService;
-import org.neusoft.neubbs.utils.CookieUtil;
-import org.neusoft.neubbs.utils.PublicParamsUtil;
+import com.wdjk.webdemo624.constant.api.ApiMessage;
+import com.wdjk.webdemo624.constant.api.ParamConst;
+import com.wdjk.webdemo624.constant.api.SetConst;
+import com.wdjk.webdemo624.constant.log.LogWarnEnum;
+import com.wdjk.webdemo624.exception.ServiceException;
+import com.wdjk.webdemo624.service.IHttpService;
+
+import com.wdjk.webdemo624.utils.CookieUtil;
+import com.wdjk.webdemo624.utils.PublicParamsUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -27,12 +27,7 @@ import java.io.IOException;
 @Service("httpServiceImpl")
 public class HttpServiceImpl implements IHttpService {
 
-    private final NeubbsConfigDO neubbsConfig;
 
-    @Autowired
-    public HttpServiceImpl(NeubbsConfigDO neubbsConfig) {
-        this.neubbsConfig = neubbsConfig;
-    }
 
     @Override
     public void setCaptchaImageTypeResponseHeader() {
@@ -61,7 +56,7 @@ public class HttpServiceImpl implements IHttpService {
     public void saveCookie(String cookieName, String cookieValue) {
         //get cookie max day in neubbs.properties
         CookieUtil.saveCookie(PublicParamsUtil.getResponse(), cookieName,
-                cookieValue, neubbsConfig.getCookieAutoLoginMaxAgeDay());
+                cookieValue, 15);
     }
 
     @Override

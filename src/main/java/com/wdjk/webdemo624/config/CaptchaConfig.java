@@ -8,6 +8,6 @@ import org.springframework.context.annotation.Configuration;
  * @author: zhuhua
  * @create: 2021-05-30 17:11
  **/
-@Configuration
+
 public class CaptchaConfig {
 }

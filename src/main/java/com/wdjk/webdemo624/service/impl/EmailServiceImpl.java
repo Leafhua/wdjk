@@ -1,13 +1,13 @@
 package com.wdjk.webdemo624.service.impl;
 
-import org.neusoft.neubbs.constant.api.ApiMessage;
-import org.neusoft.neubbs.constant.api.SetConst;
-import org.neusoft.neubbs.constant.log.LogWarnEnum;
-import org.neusoft.neubbs.entity.properties.NeubbsConfigDO;
-import org.neusoft.neubbs.exception.ServiceException;
-import org.neusoft.neubbs.service.IEmailService;
-import org.neusoft.neubbs.utils.SendEmailUtil;
-import org.neusoft.neubbs.utils.StringUtil;
+import com.wdjk.webdemo624.constant.api.ApiMessage;
+import com.wdjk.webdemo624.constant.api.SetConst;
+import com.wdjk.webdemo624.constant.log.LogWarnEnum;
+import com.wdjk.webdemo624.exception.ServiceException;
+import com.wdjk.webdemo624.service.IEmailService;
+
+import com.wdjk.webdemo624.utils.SendEmailUtil;
+import com.wdjk.webdemo624.utils.StringUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor;
 import org.springframework.stereotype.Service;
@@ -21,18 +21,17 @@ import org.springframework.stereotype.Service;
 public class EmailServiceImpl implements IEmailService {
 
     private final ThreadPoolTaskExecutor taskExecutor;
-    private final NeubbsConfigDO neubbsConfig;
+    private final String AccountApiVaslidateUrl = "http://localhost:8088/account/validate?token=";
 
     @Autowired
-    public EmailServiceImpl(ThreadPoolTaskExecutor taskExecutor, NeubbsConfigDO neubbsConfig) {
+    public EmailServiceImpl(ThreadPoolTaskExecutor taskExecutor) {
         this.taskExecutor = taskExecutor;
-        this.neubbsConfig = neubbsConfig;
     }
 
 
     @Override
     public void sendAccountActivateMail(String email, String emailToken) {
-        String activateUrl = neubbsConfig.getAccountApiVaslidateUrl();
+        String activateUrl = AccountApiVaslidateUrl;
         if (activateUrl == null) {
            throw new ServiceException(ApiMessage.UNKNOWN_ERROR).log(LogWarnEnum.ES1);
         }

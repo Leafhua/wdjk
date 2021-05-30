@@ -1,8 +1,9 @@
 package com.wdjk.webdemo624.service.impl;
 
-import org.neusoft.neubbs.constant.api.SetConst;
-import org.neusoft.neubbs.service.IRandomService;
-import org.neusoft.neubbs.utils.RandomUtil;
+
+import com.wdjk.webdemo624.constant.api.SetConst;
+import com.wdjk.webdemo624.service.IRandomService;
+import com.wdjk.webdemo624.utils.RandomUtil;
 import org.springframework.stereotype.Service;
 
 /**

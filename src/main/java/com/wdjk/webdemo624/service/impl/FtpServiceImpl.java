@@ -1,11 +1,12 @@
 package com.wdjk.webdemo624.service.impl;
 
-import org.neusoft.neubbs.constant.api.ApiMessage;
-import org.neusoft.neubbs.constant.log.LogWarnEnum;
-import org.neusoft.neubbs.entity.UserDO;
-import org.neusoft.neubbs.exception.ServiceException;
-import org.neusoft.neubbs.service.IFtpService;
-import org.neusoft.neubbs.utils.FtpUtil;
+
+import com.wdjk.webdemo624.constant.api.ApiMessage;
+import com.wdjk.webdemo624.constant.log.LogWarnEnum;
+import com.wdjk.webdemo624.entity.User;
+import com.wdjk.webdemo624.exception.ServiceException;
+import com.wdjk.webdemo624.service.IFtpService;
+import com.wdjk.webdemo624.utils.FtpUtil;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -20,9 +21,9 @@ import java.io.IOException;
 public class FtpServiceImpl implements IFtpService {
 
     @Override
-    public void createUserPersonalDirectory(UserDO user) {
+    public void createUserPersonalDirectory(User user) {
         try {
-            String userAvatarImageFilePath = "/user/" + user.getId() + "-" + user.getName() + "/avator";
+            String userAvatarImageFilePath = "/user/" + user.getFuId() + "-" + user.getFuName() + "/avator";
             FtpUtil.createDirectory(userAvatarImageFilePath);
         } catch (IOException ioe) {
             throw new ServiceException(ApiMessage.FTP_SERVICE_EXCEPTION).log(LogWarnEnum.FTPS1);
@@ -30,9 +31,9 @@ public class FtpServiceImpl implements IFtpService {
     }
 
     @Override
-    public void uploadUserAvatar(UserDO user, MultipartFile avatarFile) {
+    public void uploadUserAvatar(User user, MultipartFile avatarFile) {
         try {
-            String serverUploadPath = "/user/" + user.getId() + "-" + user.getName() + "/avator/";
+            String serverUploadPath = "/user/" + user.getFuId() + "-" + user.getFuName() + "/avator/";
             String serverFileName = this.generateServerAvatarFileName(avatarFile);
 
             FtpUtil.uploadFile(serverUploadPath, serverFileName, avatarFile.getInputStream());
