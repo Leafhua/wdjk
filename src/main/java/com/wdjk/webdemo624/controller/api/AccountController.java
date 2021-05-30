@@ -36,9 +36,6 @@ public class AccountController {
     private  UserService userService;
 
     @Resource
-    private MailUtil mailUtil;
-
-    @Resource
     private TemplateEngine templateEngine;
 
     @Resource
@@ -64,7 +61,7 @@ public class AccountController {
 
     @RequestMapping(value = "/login",method = RequestMethod.GET)
     public String login(@ApiParam(name = "name") @RequestParam("name") String username,
-                        @ApiParam("密码") String password){
+                        @ApiParam("密码") @RequestParam("password")String password){
 
         if(!StringUtils.isNullOrEmpty(username)&&"123456".equals(password)){
         return "OK";}
@@ -97,8 +94,6 @@ public class AccountController {
         String email = (String) requestBodyParamsMap.get(ParamConst.EMAIL);
         String code = RandomUtil.generateRandomString(6);
         User user = userService.register(username,password,email);
-
-
-
+        return new ApiJsonDTO().success().model(userService.getUserInfoModelMap(user));
     }
 }

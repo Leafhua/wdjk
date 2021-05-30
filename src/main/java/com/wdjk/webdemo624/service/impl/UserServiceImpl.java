@@ -8,11 +8,14 @@ import com.wdjk.webdemo624.exception.ServiceException;
 import com.wdjk.webdemo624.mapper.UserMapper;
 import com.wdjk.webdemo624.service.UserService;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
+import com.wdjk.webdemo624.utils.JsonUtil;
+import com.wdjk.webdemo624.utils.MapFilterUtil;
 import com.wdjk.webdemo624.utils.SecretUtil;
 import com.wdjk.webdemo624.utils.StringUtil;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
+import java.util.HashMap;
 import java.util.Map;
 
 /**
@@ -140,5 +143,15 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements Us
         return SecretUtil.encryptMd5(SecretUtil.encryptMd5(password) + password);
     }
 
+    @Override
+    public Map<String, Object> getUserInfoModelMap(User user) {
+        if (user == null) {
+            return new HashMap<>(0);
+        }
 
+        Map<String, Object> userInfoMap = JsonUtil.toMapByObject(user);
+        MapFilterUtil.filterUserInfo(userInfoMap);
+
+        return userInfoMap;
+    }
 }

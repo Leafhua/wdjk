@@ -16,25 +16,5 @@ import static org.junit.jupiter.api.Assertions.*;
 @ContextConfiguration(classes = WebDemoApplication.class)
 class MailUtilTest {
 
-    @Autowired
-    private MailUtil mailUtil;
 
-    @Autowired
-    private TemplateEngine templateEngine;
-
-    @Test
-    public void sendMail() {
-        mailUtil.sendMail("1007664276@qq.com","TEST","Welcome");
-    }
-
-    @Test
-    public void testHtmlMail(){
-        Context context = new Context();
-        context.setVariable("username","sunday");
-
-        String content = templateEngine.process("/mail/mailDemo", context);
-        System.out.println(content);
-
-        mailUtil.sendMail("1007664276@qq.com","Html",content);
-    }
 }

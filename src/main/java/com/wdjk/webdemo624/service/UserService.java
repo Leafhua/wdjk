@@ -39,6 +39,14 @@ public interface UserService extends IService<User> {
     Map<String,Object> getUserInfoModelMap(String username,String email);
 
     /**
+     * 获取用户信息 Model Map
+     *
+     * @param user 用户对象
+     * @return Map 已过滤过的用户信息 Map
+     */
+    Map<String, Object> getUserInfoModelMap(User user);
+
+    /**
      * 通过 id 获取用户信息
      *      -userID 须验证存在性
      * @param userId 用户id

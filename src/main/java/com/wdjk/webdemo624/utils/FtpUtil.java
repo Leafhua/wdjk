@@ -1,12 +1,14 @@
 package com.wdjk.webdemo624.utils;
 
 
+
+import com.wdjk.webdemo624.constant.api.ApiMessage;
+import com.wdjk.webdemo624.constant.log.LogWarnEnum;
+import com.wdjk.webdemo624.exception.FtpException;
+import com.wdjk.webdemo624.exception.UtilClassException;
 import org.apache.commons.net.ftp.FTPClient;
 import org.apache.commons.net.ftp.FTPFile;
 import org.apache.commons.net.ftp.FTPReply;
-import com.wdjk.webdemo624.constant.api.ApiMessage;
-import com.wdjk.webdemo624.constant.log.LogWarnEnum;
-import com.wdjk.webdemo624.exception.UtilClassException;
 import org.springframework.core.io.ClassPathResource;
 import org.springframework.core.io.Resource;
 import org.springframework.core.io.support.PropertiesLoaderUtils;
