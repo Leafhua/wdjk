@@ -8,6 +8,9 @@ import com.wdjk.webdemo624.controller.annotation.LoginAuthorization;
 import com.wdjk.webdemo624.dto.ApiJsonDTO;
 import com.wdjk.webdemo624.entity.User;
 import com.wdjk.webdemo624.service.*;
+import com.wdjk.webdemo624.utils.JsonUtil;
+import com.wdjk.webdemo624.utils.MapFilterUtil;
+import com.wdjk.webdemo624.utils.StringUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -133,7 +136,8 @@ public class AccountController {
     @RequestMapping(value = "/info",method = RequestMethod.GET)
     public ApiJsonDTO userInfo(){
         User user =  secretService.getUserInfoByAuthentication(httpService.getAuthenticationCookieValue());
-        return new ApiJsonDTO().success().model(user);
+
+        return new ApiJsonDTO().success().model(userService.getUserInfoModelMap(userService.getUserInfoByName(user.getFuName())));
     }
 
     /**
