@@ -98,8 +98,8 @@ public class WebDemoApplicationTests  {
                 .set("fu_state",1);
         User user = userMapper.selectById(65);
         System.out.println(user);
-        System.out.println(userMapper.update(null,updateWrapper));
-        System.out.println(userMapper.selectById(user.getFuId()));
+        System.out.println(userMapper.selectOne(updateWrapper));
+        System.out.println();
 
     }
 

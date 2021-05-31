@@ -36,15 +36,9 @@ public final class MapFilterUtil {
     * @param userInfoMap 用户信息 Map
     */
    public static void filterUserInfo(Map<String, Object> userInfoMap) {
-      userInfoMap.put(ParamConst.USER_ID, userInfoMap.get(ParamConst.ID));
-      userInfoMap.put(ParamConst.USERNAME, userInfoMap.get(ParamConst.NAME));
 
-      userInfoMap.put(ParamConst.STATE, (int) userInfoMap.get(ParamConst.STATE) == SetConst.ACCOUNT_ACTIVATED_STATE);
-
-      userInfoMap.put(ParamConst.AVATOR, StringUtil.generateUserAvatarUrl(userInfoMap));
-
-      removeKeys(userInfoMap, new String[] {ParamConst.ID, ParamConst.NAME,
-              ParamConst.PASSWORD, ParamConst.RANK});
+      removeKeys(userInfoMap, new String[] {
+              "fuPassword", "fuRank","fiId","fuTheme"});
    }
 
    /**
@@ -55,10 +49,9 @@ public final class MapFilterUtil {
     * @param topicInfoMap 需过滤的话题基本信息 Map
     */
    public static void filterTopicInfo(Map<String, Object> topicInfoMap) {
-      topicInfoMap.put(ParamConst.TOPIC_ID, topicInfoMap.get(ParamConst.ID));
 
-      removeKeys(topicInfoMap, new String[] {ParamConst.ID, ParamConst.USER_ID,
-              ParamConst.CATEGORY_ID, ParamConst.LAST_REPLY_USER_ID});
+      removeKeys(topicInfoMap, new String[] { "fuId",
+              "ftcgId", "ftLastReplyuserid"});
    }
 
    /**
@@ -68,7 +61,7 @@ public final class MapFilterUtil {
     * @param topicContentInfoMap 需过滤的话题内容信息 Map
     */
    public static void filterTopicContentInfo(Map<String, Object> topicContentInfoMap) {
-      removeKeys(topicContentInfoMap, new String[] {ParamConst.ID, ParamConst.TOPIC_ID});
+      removeKeys(topicContentInfoMap, new String[] {"ftcId", "ftId"});
    }
 
    /**
@@ -79,9 +72,7 @@ public final class MapFilterUtil {
     * @param topicCategoryInfoMap 需过滤的话题分类信息 Map
     */
    public static void filterTopicCategory(Map<String, Object> topicCategoryInfoMap) {
-      topicCategoryInfoMap.put(ParamConst.ID, topicCategoryInfoMap.get(ParamConst.NICK));
 
-      topicCategoryInfoMap.remove(ParamConst.NICK);
    }
 
    /**
@@ -112,9 +103,9 @@ public final class MapFilterUtil {
     * @param topicReplyInfoMap 需过滤的话题回复信息 Map
     */
    public static void filterTopicReply(Map<String, Object> topicReplyInfoMap) {
-      topicReplyInfoMap.put(ParamConst.REPLY_ID, topicReplyInfoMap.get(ParamConst.ID));
 
-      removeKeys(topicReplyInfoMap, new String[] {ParamConst.ID, ParamConst.USER_ID});
+
+      removeKeys(topicReplyInfoMap, new String[] { "fuId"});
    }
 
    /**

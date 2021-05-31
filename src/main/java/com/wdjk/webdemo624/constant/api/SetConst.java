@@ -28,6 +28,8 @@ public final class SetConst {
 
     private SetConst() { }
 
+    public static final String ACCOUNT_API_VASLIDATE_URL = "http://localhost:8081/wdjk/api/account/validate?token=";
+
     /*
      * ***********************************************
      *  时间
@@ -77,7 +79,7 @@ public final class SetConst {
     /**
      * JWT Token 密钥
      */
-    public static final String JWT_TOKEN_SECRET_KEY = "this neubbs is best";
+    public static final String JWT_TOKEN_SECRET_KEY = "guapi wdjk";
 
     /**
      * 权限
@@ -212,9 +214,9 @@ public final class SetConst {
      *      - 邮件主题（账户激活）
      *      - 邮件主题（账户临时密码）
      */
-    public static final String EMAIL_SENDER_NAME = "Neubbs";
-    public static final String EMAIL_SUBJECT_ACTIVATE = "Neubbs 账户激活";
-    public static final String EMAIL_SUBJECT_TEMPORARY_PASSWORD = "Neubbs 账户临时密码";
+    public static final String EMAIL_SENDER_NAME = "wdjk匿名留言板";
+    public static final String EMAIL_SUBJECT_ACTIVATE = "wdjk匿名留言板 账户激活";
+    public static final String EMAIL_SUBJECT_TEMPORARY_PASSWORD = "wdjk匿名留言板 账户临时密码";
 
     /**
      * 邮件格式
@@ -225,8 +227,8 @@ public final class SetConst {
     /**
      * 腾讯企业邮箱
      */
-    public static final String TO_HOST = "smtp.exmail.qq.com";
-    public static final String TO_SMTP = "smtp";
+    public static final String TO_HOST = "smtp.163.com";
+    public static final String TO_SMTPS = "smtps";
     public static final String TO_AUTH = "mail.smtp.auth";
     public static final String TO_AUTH_TRUE = "true";
     public static final String TO_MAIL_SMTP_SOCKETFACTORY_CLASS = "mail.smtp.socketFactory.class";

@@ -66,7 +66,7 @@ public final class SendEmailUtil {
             sender.setUsername(FROM_USERNAME);
             sender.setPassword(FROM_AUTHORIZATION_CODE);
             sender.setHost(SetConst.TO_HOST);
-            sender.setProtocol(SetConst.TO_SMTP);
+            sender.setProtocol(SetConst.TO_SMTPS);
             sender.setPort(Integer.parseInt(SetConst.TO_SMTP_SSL_PROT));
 
         Properties properties = new Properties();

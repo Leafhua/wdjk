@@ -14,6 +14,8 @@ public final class ParamConst {
     public static final boolean SUCCESS = true;
     public static final boolean FAIL = false;
 
+
+
     public static final String AVATAR_PATH = "/avatars/";
     /**
      * id

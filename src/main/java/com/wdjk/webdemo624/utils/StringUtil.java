@@ -104,7 +104,7 @@ public final class StringUtil {
      * @return String 激活邮件 HTML 内容
      */
     public static String generateActivateMailHtmlContent(String url) {
-        return "<html><head></head><body><h1>Neubbs 帐号激活邮件，点击以下链接激活帐号</h1><br>"
+        return "<html><head></head><body><h1>wdjk匿名留言板 帐号激活邮件，点击以下链接激活帐号</h1><br>"
                 + "<a href=\"" + url + "\">" + url + "</a></body></html>";
     }
 
@@ -123,10 +123,10 @@ public final class StringUtil {
         String userAvatar = (String) userInfoMap.get(ParamConst.AVATOR);
 
 
-        return (DOMAIN+"/"+CONTEXT_PATH+ ParamConst.AVATAR_PATH+RandomUtil.generateRandomNumbers(1,1000)+".png");
+        return (DOMAIN+CONTEXT_PATH+ ParamConst.AVATAR_PATH+RandomUtil.generateRandomNumbers(1,1000)+".png");
     }
     public static String generateUserAvatarUrl() {
-        return (DOMAIN+"/"+CONTEXT_PATH+ ParamConst.AVATAR_PATH+RandomUtil.generateRandomNumbers(1,1000)+".png");
+        return (DOMAIN+CONTEXT_PATH+ ParamConst.AVATAR_PATH+RandomUtil.generateRandomNumbers(1,1000)+".png");
     }
 
     /**

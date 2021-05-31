@@ -3,6 +3,7 @@ package com.wdjk.webdemo624.service.impl;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.core.conditions.update.UpdateWrapper;
 import com.wdjk.webdemo624.constant.api.ApiMessage;
+import com.wdjk.webdemo624.constant.api.ParamConst;
 import com.wdjk.webdemo624.constant.api.SetConst;
 import com.wdjk.webdemo624.constant.log.LogWarnEnum;
 import com.wdjk.webdemo624.entity.User;
@@ -11,10 +12,7 @@ import com.wdjk.webdemo624.exception.ServiceException;
 import com.wdjk.webdemo624.mapper.UserMapper;
 import com.wdjk.webdemo624.service.UserService;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
-import com.wdjk.webdemo624.utils.JsonUtil;
-import com.wdjk.webdemo624.utils.MapFilterUtil;
-import com.wdjk.webdemo624.utils.SecretUtil;
-import com.wdjk.webdemo624.utils.StringUtil;
+import com.wdjk.webdemo624.utils.*;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
@@ -194,9 +192,96 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements Us
     public void alterUserEmail(String username, String newEmail) {
         this.getUserInfoByName(username);
         this.confirmUserNotOccupiedByEmail(newEmail);
+        updateWrapper.clear();
         updateWrapper.eq("fu_name",username).set("fu_email",newEmail);
         if (userMapper.update(null,updateWrapper) != 1){
             throw new ServiceException(ApiMessage.DATABASE_EXCEPTION).log(LogWarnEnum.US2);
         }
+    }
+
+    @Override
+    public void alterUserPasswordByName(String username, String newPassword) {
+        this.getUserInfoByName(username);
+        this.updateUserPasswordByName(username,newPassword);
+    }
+
+    /**
+     * 更新用户密码
+     *
+     * @param username 用户名
+     * @param newPassword 新密码
+     */
+    private void updateUserPasswordByName(String username, String newPassword) {
+        updateWrapper.clear();
+        updateWrapper.eq("fu_name",username).set("fu_password",this.encryptUserPassword(newPassword));
+        if (userMapper.update(null,updateWrapper)!=1){
+            throw new ServiceException(ApiMessage.DATABASE_EXCEPTION).log(LogWarnEnum.US2);
+        }
+
+    }
+
+    @Override
+    public void confirmUserActivatedByEmail(String email) {
+        if(this.isUserActivatedByState(this.getUserInfoByEmail(email).getFuState())){
+            throw new ServiceException(ApiMessage.ACCOUNT_ACTIVATED).log(LogWarnEnum.US5);
+        }
+    }
+
+    @Override
+    public User alterUserActivateStateByEmailToken(String emailToken) {
+
+        String plainText = SecretUtil.decodeBase64(emailToken);
+        String[] array = plainText.split("-");
+        if (array.length != SetConst.LENGTH_TWO){
+            throw new ServiceException(ApiMessage.INVALID_TOKEN).log(LogWarnEnum.US12);
+        }
+
+        String email = array[0];
+        if (!PatternUtil.matchEmail(email)){
+            throw new ServiceException(ApiMessage.INVALID_TOKEN).log(LogWarnEnum.US12);
+        }
+
+        String expireTime = array[1];
+        if (StringUtil.isExpire(expireTime)){
+            throw new ServiceException(ApiMessage.LINK_INVALID).log(LogWarnEnum.US4);
+        }
+
+        this.confirmUserActivatedByEmail(email);
+        updateWrapper.clear();
+        updateWrapper.eq("fu_email",email).set("fu_state",SetConst.ACTIVE);
+        if (userMapper.update(null,updateWrapper)!= 1 ){
+            throw new ServiceException(ApiMessage.DATABASE_EXCEPTION).log(LogWarnEnum.US2);
+        }
+
+        return userMapper.selectOne(updateWrapper);
+
+    }
+
+    @Override
+    public void alterUserPasswordByEmail(String email, String newPassword) {
+        String username = this.getUserInfoByEmail(email).getFuName();
+        this.updateUserPasswordByName(username,newPassword);
+    }
+
+    @Override
+    public Map<String, Object> alterUserProfile(String username, String birthday, String description) {
+        this.getUserInfoByName(username);
+
+/*        User updateUser = new User();
+        updateUser.setFuName(username);
+        updateUser.setFuBirthday(birthday == null ? "" : birthday);
+        updateUser.setFuDescription(description == null ? "" : description);*/
+
+        updateWrapper.clear();
+        updateWrapper.eq("fu_name",username);
+        updateWrapper.set("fu_birthday",birthday == null ? "" : birthday);
+        updateWrapper.set("fu_description",description == null ? "" : description);
+
+
+        if (userMapper.update(null,updateWrapper) == 0){
+            throw new ServiceException(ApiMessage.DATABASE_EXCEPTION).log(LogWarnEnum.US2);
+        }
+
+        return this.getUserInfoModelMap(userMapper.selectOne(updateWrapper));
     }
 }

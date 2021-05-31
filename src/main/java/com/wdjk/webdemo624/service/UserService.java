@@ -110,6 +110,55 @@ public interface UserService extends IService<User> {
      */
     void alterUserEmail(String username, String newEmail);
 
+    /**
+     * （name）修改用户密码
+     *      - username 需验证存在性
+     *
+     * @param username 用户名
+     * @param newPassword 用户新密码
+     */
+    void alterUserPasswordByName(String username, String newPassword);
+
+    /**
+     * （邮箱）确认用户已经激活
+     *
+     * @param email 用户邮箱
+     */
+    void confirmUserActivatedByEmail(String email);
+
+    /**
+     * 修改用户激活状态
+     *      - 通过 Base64 加密 email token
+     *      - 解密后 email token，得到待激活的邮箱，需验证邮箱是否已被激活
+     *
+     * @param emailToken 邮件 token（激活邮件内，激活链接）
+     * @return User 激活后，重新查询用户信息
+     */
+    User alterUserActivateStateByEmailToken(String emailToken);
+
+    /**
+     * （email）修改用户密码
+     *      - email 需验证存在性
+     *
+     * @param email 用户邮箱
+     * @param newPassword 用户新密码
+     */
+    void alterUserPasswordByEmail(String email, String newPassword);
+
+    /**
+     * 修改用户个人信息
+     *      - username 需要验证用户存在性
+     *
+     * @param username 用户名
+     * @param birthday 出生日期
+     * @param description 个人描述
+     * @return Map 修改成功后，重新查询的用户信息 Map
+     */
+    Map<String, Object> alterUserProfile(String username,  String birthday,
+                                         String description);
+
+
+
 
 
 

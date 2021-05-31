@@ -1,6 +1,7 @@
 package com.wdjk.webdemo624.service.impl;
 
 import com.wdjk.webdemo624.constant.api.ApiMessage;
+import com.wdjk.webdemo624.constant.api.ParamConst;
 import com.wdjk.webdemo624.constant.api.SetConst;
 import com.wdjk.webdemo624.constant.log.LogWarnEnum;
 import com.wdjk.webdemo624.exception.ServiceException;
@@ -21,7 +22,7 @@ import org.springframework.stereotype.Service;
 public class EmailServiceImpl implements IEmailService {
 
     private final ThreadPoolTaskExecutor taskExecutor;
-    private final String AccountApiVaslidateUrl = "http://localhost:8088/account/validate?token=";
+    private final String AccountApiVaslidateUrl = SetConst.ACCOUNT_API_VASLIDATE_URL;
 
     @Autowired
     public EmailServiceImpl(ThreadPoolTaskExecutor taskExecutor) {

@@ -57,40 +57,6 @@ public class SwaggerConfig {
                 .apis(RequestHandlerSelectors.basePackage("com.wdjk.webdemo624.controller"))
                 .build();
     }
-    @Bean
-    public Docket createRestApi2(Environment environment){
-
-        //设置显示swagger的环境
-        Profiles profiles = Profiles.of("dev");
-        //获取项目的环境
-        //通过environment.acceptsProfiles判断是否在设置的环境当中
-        boolean flag = environment.acceptsProfiles(profiles);
-
-        return new Docket(DocumentationType.SWAGGER_2)
-                //.apiInfo(apiInfo1())
-                .groupName("liboqiao")
-                .enable(flag)
-                .select()
-                .apis(RequestHandlerSelectors.basePackage("com.wdjk.webdemo624.controller"))
-                .build();
-    }
-    @Bean
-    public Docket createRestApi3(Environment environment){
-
-        //设置显示swagger的环境
-        Profiles profiles = Profiles.of("dev");
-        //获取项目的环境
-        //通过environment.acceptsProfiles判断是否在设置的环境当中
-        boolean flag = environment.acceptsProfiles(profiles);
-
-        return new Docket(DocumentationType.SWAGGER_2)
-                //.apiInfo(apiInfo1())
-                .groupName("linting")
-                .enable(flag)
-                .select()
-                .apis(RequestHandlerSelectors.basePackage("com.wdjk.webdemo624.controller"))
-                .build();
-    }
     private ApiInfo apiInfo1(){
 
         //作者信息
