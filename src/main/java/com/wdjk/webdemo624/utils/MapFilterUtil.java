@@ -86,13 +86,9 @@ public final class MapFilterUtil {
     * @param userInfoMap 需过滤的话题用户信息 Map
     */
    public static void filterTopicUserInfo(Map<String, Object> userInfoMap) {
-      keepKeys(userInfoMap, new String[] {ParamConst.ID, ParamConst.NAME, ParamConst.AVATOR});
+      keepKeys(userInfoMap, new String[] {"fuName","fuAvator"});
 
-      userInfoMap.put(ParamConst.USERNAME, userInfoMap.get(ParamConst.NAME));
-      userInfoMap.put(ParamConst.AVATOR, StringUtil.generateUserAvatarUrl(userInfoMap));
 
-      userInfoMap.remove(ParamConst.ID);
-      userInfoMap.remove(ParamConst.NAME);
    }
 
    /**
