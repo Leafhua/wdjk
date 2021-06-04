@@ -26,6 +26,7 @@ public class MyMetaObjectHandler implements MetaObjectHandler {
         this.fillStrategy(metaObject,"fuCreatetime",date);
         this.fillStrategy(metaObject,"ftCreatetime",date);
         this.fillStrategy(metaObject,"ftrCreatetime",date);
+        this.fillStrategy(metaObject,"ftLastReplytime",date);
 
     }
 
