@@ -45,6 +45,8 @@ public enum LogWarnEnum {
 
     ES1(1, " 配置文件 'account.api.validate.url' 字段为空，请补充完整！"),
 
+    HS1(1,"ip地址保存失败"),
+
     TS1(1, " 话题保存失败"),
     TS2(2, " 话题内容保存失败"),
     TS3(3, " 话题回复保存失败"),
