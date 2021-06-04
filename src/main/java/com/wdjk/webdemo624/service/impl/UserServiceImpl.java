@@ -34,6 +34,10 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements Us
 
     @Resource
     private UserMapper userMapper;
+    @Resource
+    private HttpServiceImpl httpService;
+
+
 
     QueryWrapper<User> wrapper = new QueryWrapper<>();
     UpdateWrapper<User> updateWrapper = new UpdateWrapper<>();
@@ -48,6 +52,7 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements Us
         user.setFuEmail(email);
         user.setFuPassword(this.encryptUserPassword(password));
         user.setFuAvator(StringUtil.generateUserAvatarUrl());
+        user.setFiId(httpService.savaIPAddress().getFiId());
 
 
         if (userMapper.insert(user) != 1){
