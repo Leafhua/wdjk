@@ -28,6 +28,11 @@ public final class SetConst {
 
     private SetConst() { }
 
+
+    public static final String UNKNOWN = "unknown";
+    public static final String LOCALHOST = "127.0.0.1";
+    public static final String SEPARATOR = ",";
+
     public static final String ACCOUNT_API_VASLIDATE_URL = "http://localhost:8081/wdjk/api/account/validate?token=";
 
     /*
