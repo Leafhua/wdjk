@@ -4,9 +4,12 @@ import com.wdjk.webdemo624.constant.api.ApiMessage;
 import com.wdjk.webdemo624.constant.api.ParamConst;
 import com.wdjk.webdemo624.constant.api.SetConst;
 import com.wdjk.webdemo624.constant.log.LogWarnEnum;
+import com.wdjk.webdemo624.entity.Ipaddress;
 import com.wdjk.webdemo624.exception.ServiceException;
+import com.wdjk.webdemo624.mapper.IpaddressMapper;
 import com.wdjk.webdemo624.service.IHttpService;
 
+import com.wdjk.webdemo624.service.IpaddressService;
 import com.wdjk.webdemo624.utils.CookieUtil;
 import com.wdjk.webdemo624.utils.PublicParamsUtil;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,9 +17,12 @@ import org.springframework.stereotype.Service;
 
 import javax.imageio.ImageIO;
 import javax.servlet.ServletOutputStream;
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
+import java.net.InetAddress;
+import java.net.UnknownHostException;
 
 /**
  * IHttpService 实现类
@@ -28,6 +34,15 @@ import java.io.IOException;
 public class HttpServiceImpl implements IHttpService {
 
 
+
+    private final IpaddressService ipaddressService;
+    private final IpaddressMapper ipaddressMapper;
+
+    @Autowired
+    public HttpServiceImpl(IpaddressService ipaddressService, IpaddressMapper ipaddressMapper) {
+        this.ipaddressService = ipaddressService;
+        this.ipaddressMapper = ipaddressMapper;
+    }
 
     @Override
     public void setCaptchaImageTypeResponseHeader() {
@@ -57,6 +72,49 @@ public class HttpServiceImpl implements IHttpService {
         //get cookie max day in neubbs.properties
         CookieUtil.saveCookie(PublicParamsUtil.getResponse(), cookieName,
                 cookieValue, 15);
+    }
+
+    @Override
+    public Ipaddress savaIPAddress(){
+        Ipaddress ipaddress = new Ipaddress();
+        HttpServletRequest request= PublicParamsUtil.getRequest();
+
+        String ipAddress;
+        try {
+            ipAddress = PublicParamsUtil.getRequest().getHeader("x-forwarded-for");
+            if (ipAddress == null || ipAddress.length() == 0 || SetConst.UNKNOWN.equalsIgnoreCase(ipAddress)) {
+                ipAddress = request.getHeader("Proxy-Client-IP");
+            }
+            if (ipAddress == null || ipAddress.length() == 0 || SetConst.UNKNOWN.equalsIgnoreCase(ipAddress)) {
+                ipAddress = request.getHeader("WL-Proxy-Client-IP");
+            }
+            if (ipAddress == null || ipAddress.length() == 0 || SetConst.UNKNOWN.equalsIgnoreCase(ipAddress)) {
+                ipAddress = request.getRemoteAddr();
+                if (SetConst.LOCALHOST.equals(ipAddress)) {
+                    InetAddress inet = null;
+                    try {
+                        inet = InetAddress.getLocalHost();
+                    } catch (UnknownHostException e) {
+                        e.printStackTrace();
+                    }
+                    ipAddress = inet.getHostAddress();
+                }
+            }
+            // 对于通过多个代理的情况，第一个IP为客户端真实IP,多个IP按照','分割
+            // "***.***.***.***".length()
+            if (ipAddress != null && ipAddress.length() > 15) {
+                if (ipAddress.indexOf(SetConst.SEPARATOR) > 0) {
+                    ipAddress = ipAddress.substring(0, ipAddress.indexOf(","));
+                }
+            }
+        } catch (Exception e) {
+            ipAddress = "";
+        }
+        ipaddress.setFiIpv4(ipAddress);
+        if (ipaddressMapper.insert(ipaddress) == 0){
+            throw new ServiceException(ApiMessage.DATABASE_EXCEPTION).log(LogWarnEnum.HS1);
+        }
+        return ipaddressService.getById(ipaddress.getFiId());
     }
 
     @Override
