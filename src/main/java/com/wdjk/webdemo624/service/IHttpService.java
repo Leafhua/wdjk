@@ -1,5 +1,7 @@
 package com.wdjk.webdemo624.service;
 
+import com.wdjk.webdemo624.entity.Ipaddress;
+
 import java.awt.image.BufferedImage;
 
 /**
@@ -158,4 +160,10 @@ public interface IHttpService {
      * @return int 在线登录人数
      */
     int getOnlineLoginUserNumber();
+
+    /**
+     *自动插入ip表
+     * @return Ipaddress 实体
+     */
+    Ipaddress savaIPAddress();
 }
