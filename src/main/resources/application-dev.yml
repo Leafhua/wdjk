@@ -19,6 +19,8 @@ server:
   servlet:
     context-path: /wdjk
 spring:
+
+
   application:
     name: wdjk
   datasource:
