@@ -70,7 +70,7 @@ public final class ParamValidateUtil {
      private static final int TOPIC_TITLE_MIN = 1;
      private static final int TOPIC_TITLE_MAX = 55;
      private static final int TOPIC_CATEGORY_NICK_MIN = 1;
-     private static final int TOPIC_CATEGORY_NICK_MAX = 20;
+     private static final int TOPIC_CATEGORY_NICK_MAX = 1;
      private static final int TOPIC_CONTENT_MIN = 1;
      private static final int TOPIC_CONTENT_MAX = 100000;
      private static final int REPLY_CONTENT_MIN = 1;
@@ -130,7 +130,7 @@ public final class ParamValidateUtil {
         typePatternMap.put(ParamConst.ID, new Pattern("isPureNumber", " （类型）参数不符合规范，必须为纯数字（0 ~ 9）！"));
         typePatternMap.put(ParamConst.NUMBER, new Pattern("isPureNumber", " （类型）参数不符合规范，必须为纯数字(0 ~ 9)！"));
         typePatternMap.put(ParamConst.TOPIC_CATEGORY_NICK,
-                new Pattern("isPureEnglish", " （参数）话题分类昵称不符合规范，必须纯英文（a-zA-Z）"));
+                new Pattern("isPureNumber", " （类型）参数不符合规范，必须为纯数字"));
         typePatternMap.put(ParamConst.USERNAME, new Pattern("matchUsername", "（类型）参数不符合规范（A-Z a-z 0-9）"));
         typePatternMap.put(ParamConst.EMAIL, new Pattern("matchEmail", " （类型）参数不符合规范（xxx@xx.xxx）"));
         typePatternMap.put(ParamConst.AVATOR,
