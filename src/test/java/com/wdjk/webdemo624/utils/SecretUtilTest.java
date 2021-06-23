@@ -20,11 +20,18 @@ public class SecretUtilTest {
 
     @Test
     public void JWTtest(){
-        User user = userMapper.selectById(60);
-        System.out.println(user);
-        String token = SecretUtil.generateUserInfoToken(user);
-        System.out.println(token);
-        System.out.println(SecretUtil.decryptUserInfoToken(token));
+        //User user = userMapper.selectById(60);
+        User user = new User();
+        User user1= new User();
+        user1.setFuId(90);
+        user1.setFuName("test");
+        user1.setFuRank(1);
+        user1.setFuState(1);
+        assertEquals(user,SecretUtil.decryptUserInfoToken(SecretUtil.generateUserInfoToken(user)));
+
+    }
+    @Test
+    public void JWTBlackTest(){
 
     }
 }
